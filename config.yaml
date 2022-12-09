@@ -1,0 +1,8 @@
+username: "Your LinkedIn username"
+password: "Your LinkedIn password"
+phone_number: "Your phone number for SMS verification"
+upload_resume: "Path to your resume file"
+upload_cover_letter: "Path to your cover letter file"
+search_location: "Location to search for jobs"
+search_keywords: "Keywords to search for jobs"
+max_search_time: 10800 # Maximum search time in seconds (10 hours by default)
