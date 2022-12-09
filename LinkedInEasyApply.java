@@ -1,9 +1,6 @@
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import org.LinkedInEasyApply.java
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,71 +12,15 @@ System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 ChromeOptions options = new ChromeOptions();
 options.addArguments("--incognito");
 WebDriver driver = new ChromeDriver(options);
-
-    // Set up LinkedIn login page
-    driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-    driver.get("https://www.linkedin.com/");
-
-    // Set up login credentials
-    String username = "your_username";
-    String password = "your_password";
-    String phoneNumber = "your_phone_number";
-
-    // Set up LinkedInLogin object with login credentials
-    LinkedInLogin login = new LinkedInLogin(username, password, phoneNumber);
-
-    // Set up LinkedInSMS object with phone number
-    LinkedInSMS sms = new LinkedInSMS(phoneNumber);
-
-    // Set up LinkedInSearch object with search keywords and filters
-    LinkedInSearch search = new LinkedInSearch("your_keywords", "your_location", "your_job_title", "your_company", "your_experience_level", "your_job_type");
-
-    // Set up LinkedInShare object with job url and connections
-    LinkedInShare share = new LinkedInShare("your_job_url", ["your_connection_1", "your_connection_2"], "your_message");
-
-    // Log in to LinkedIn
-    try {
-        login.login(driver);
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch {
-        // Handle any exceptions
-    }
-
-    // Handle SMS verification
-    try {
-        sms.handleSMSVerification(driver);
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch {
-        // Handle any exceptions
-    }
-
-    // Search for job postings
-    try {
-        search.search(driver);
-    } catch (IOException e) {.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-public class LinkedInEasyApply {
-public static void main(String[] args) throws IOException {
-// Set up ChromeDriver
-System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-ChromeOptions options = new ChromeOptions();
-options.addArguments("--incognito");
-WebDriver driver = new ChromeDriver(options);
-
-    // Set up login credentials
-    String username = "your_username";
-    String password = "your_password";
-    String phoneNumber = "your_phone_number";
-
-    // Set up LinkedIn login page
-    driver.get("https://www.linked
+    
 // Set up LinkedIn login page
 driver.get("https://www.linkedin.com/uas/login");
 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+// Set up login credentials
+String username = "your_username";
+String password = "your_password";
+String phoneNumber = "your_phone_number";
 
 // Enter username and password
 driver.findElement(By.id("username")).sendKeys(username);
@@ -90,9 +31,9 @@ driver.findElement(By.xpath("//button[contains(text(), 'Sign in')]")).click();
 
 // Wait for SMS verification input
 try {
-Thread.sleep(3000);
+    Thread.sleep(3000);
 } catch (InterruptedException e) {
-e.printStackTrace();
+    e.printStackTrace();
 }
 
 // Enter SMS verification code
@@ -103,96 +44,96 @@ driver.findElement(By.xpath("//button[contains(text(), 'Submit')]")).click();
 
 // Wait for login to complete
 try {
-Thread.sleep(3000);
+    Thread.sleep(3000);
 } catch (InterruptedException e) {
-e.printStackTrace();
+    e.printStackTrace();
 }
 
 // Search for job postings
-driver.get("https://www.linkedin.com/jobs/search/?keywords=your_keywords&location=your_location");
+driver.get("https://www.linkedin.com/jobs/");
 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-// Loop through search results
-while (true) {
-// Check for job postings
-if (driver.findElements(By.xpath("//button[contains(text(), 'Easy Apply')]")).size() > 0) {
-// Apply to job posting
-driver.findElement(By.xpath("//button[contains(text(), 'Easy Apply')
-                          
-// Apply to job posting
-driver.findElement(By.xpath("//button[contains(text(), 'Easy Apply')]")).click();
+// Enter search keywords
+driver.findElement(By.xpath("//input[@aria-label='Search jobs']")).sendKeys("your_keywords");
 
-// Wait for application form to load
+// Enter search location
+driver.findElement(By.xpath("//input[@aria-label='Location']")).sendKeys("your_location");
+
+// Press search button
+driver.findElement(By.xpath("//button[contains(text(), 'Search')]")).click();
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+// Filter search results by job title
+driver.findElement(By.xpath("//button[contains(text(), 'All Filters')]")).click();
+driver.findElement(By.xpath("//input[@aria-label='Job title']")).sendKeys("your_job_title");
+
+// Filter search results by company=
+driver.findElement(By.xpath("//input[@aria-label='Search by company']")).sendKeys(company);
+
+// Press the search button
+driver.findElement(By.xpath("//button[contains(text(), 'Search')]")).click();
+
+// Wait for search results to load
 try {
 Thread.sleep(3000);
 } catch (InterruptedException e) {
 e.printStackTrace();
 }
 
-// Fill out application form
-driver.findElement(By.id("application-first-name")).sendKeys("your_first_name");
-driver.findElement(By.id("application-last-name")).sendKeys("your_last_name");
-driver.findElement(By.id("application-email")).sendKeys("your_email");
-driver.findElement(By.id("application-phone")).sendKeys("your_phone_number");
+// Filter search results by experience level
+driver.findElement(By.xpath("//button[contains(text(), 'Experience level')]")).click();
+driver.findElement(By.xpath("//label[contains(text(), experienceLevel)]")).click();
 
-// Upload resume and other files
-for (String fileName : uploads.keySet()) {
-driver.findElement(By.id("file-browse-input")).sendKeys(uploads.get(fileName));
-driver.findElement(By.xpath("//button[contains(text(), 'Attach')]")).click();
-}
+// Filter search results by job type
+driver.findElement(By.xpath("//button[contains(text(), 'Job type')]")).click();
+driver.findElement(By.xpath("//label[contains(text(), jobType)]")).click();
 
-// Press submit button
-driver.findElement(By.xpath("//button[contains(text(), 'Submit application')]")).click();
-
-// Record applied job in CSV file
-appliedJobs.append(driver.findElement(By.xpath("//h1[@class='jobs-top-card__job-title t-24 t-black t-bold']")).getText());
-jobCount++;
-
-// Wait for application to process
+// Wait for filters to apply
 try {
 Thread.sleep(3000);
 } catch (InterruptedException e) {
 e.printStackTrace();
 }
 
-// Go back to search results
-driver.findElement(By.xpath("//button[contains(text(), 'Back to search results')]")).click();
+// Store search results
+List<WebElement> searchResults = driver.findElements(By.className("job-card-container__job-title"));
 
-// Check for maximum search time
-if (System.currentTimeMillis() - startTime >= MAX_SEARCH_TIME) {
-break;
-}
+// Return search results
+return searchResults;
+    
+// Iterate through search results and apply to each job
+for (WebElement searchResult : searchResults) {
+// Click on job posting
+searchResult.click();
 
-// Wait for next page of search results to load
+// Wait for page to load
 try {
-Thread.sleep(3000);
+    Thread.sleep(3000);
 } catch (InterruptedException e) {
-e.printStackTrace();
+    e.printStackTrace();
 }
 
-// Go to next page of search results
-driver.findElement(By.xpath("//button[contains(text(), 'Next')]")).click();
+// Get current URL
+String currentUrl = driver.getCurrentUrl();
 
-// Close driver
+// Set up LinkedInShare object with job url and connections
+LinkedInShare share = new LinkedInShare(currentUrl, ["your_connection_1", "your_connection_2"], "your_message");
+
+// Share job posting with connections
+try {
+    share.share(driver);
+} catch (IOException e) {
+    e.printStackTrace();
+} catch {
+    // Handle any exceptions
+}
+
+// Return to search results page
+driver.navigate().back();
+
+}
+
+// Close browser
 driver.close();
-
-// Write applied jobs to CSV file
-FileWriter writer = new FileWriter(filename);
-for (String appliedJob : appliedJobs) {
-writer.append(appliedJob);
-writer.append("\n");
-}
-writer.flush();
-writer.close();
-
-// Print number of applied jobs
-System.out.println("Number of applied jobs: " + jobCount);
 }
 }
-
-}
-
-}
-
-}
-
