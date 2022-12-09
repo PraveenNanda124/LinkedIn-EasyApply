@@ -1,6 +1,64 @@
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import org.LinkedInEasyApply.java
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class LinkedInEasyApply {
+public static void main(String[] args) throws IOException {
+// Set up ChromeDriver
+System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+ChromeOptions options = new ChromeOptions();
+options.addArguments("--incognito");
+WebDriver driver = new ChromeDriver(options);
+
+    // Set up LinkedIn login page
+    driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+    driver.get("https://www.linkedin.com/");
+
+    // Set up login credentials
+    String username = "your_username";
+    String password = "your_password";
+    String phoneNumber = "your_phone_number";
+
+    // Set up LinkedInLogin object with login credentials
+    LinkedInLogin login = new LinkedInLogin(username, password, phoneNumber);
+
+    // Set up LinkedInSMS object with phone number
+    LinkedInSMS sms = new LinkedInSMS(phoneNumber);
+
+    // Set up LinkedInSearch object with search keywords and filters
+    LinkedInSearch search = new LinkedInSearch("your_keywords", "your_location", "your_job_title", "your_company", "your_experience_level", "your_job_type");
+
+    // Set up LinkedInShare object with job url and connections
+    LinkedInShare share = new LinkedInShare("your_job_url", ["your_connection_1", "your_connection_2"], "your_message");
+
+    // Log in to LinkedIn
+    try {
+        login.login(driver);
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch {
+        // Handle any exceptions
+    }
+
+    // Handle SMS verification
+    try {
+        sms.handleSMSVerification(driver);
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch {
+        // Handle any exceptions
+    }
+
+    // Search for job postings
+    try {
+        search.search(driver);
+    } catch (IOException e) {.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
